@@ -13,47 +13,44 @@ router.route('/')
 	})
 
 	//creates or updates an agent
+	//creates or updates an agent
 	.post(function(req, res) {
 
-		var newAgent = new Agent();
-		newAgent.name = req.body.name;
-		newAgent.currentTest = req.body.currentTest;
-		newAgent.currentLoop = req.body.currentLoop;
-		if(newAgent.currentLoop==undefined) {
-			newAgent.currentLoop="N/A";
-		}
-		newAgent.currentDataId = req.body.currentDataId;
-		if(newAgent.currentDataId==undefined) {
-			newAgent.currentDataId="N/A";
-		}
-		newAgent.info = req.body.info;		
-		if(newAgent.info==undefined) {
-			newAgent.info= "N/A"
-		}
-		newAgent.lastUpdate = Date.now();
-
-		Agent.findOne({ 'name' :  newAgent.name }, 
-			function(err, agent) {
-				if (agent){
-				    agent.currentTest = newAgent.currentTest;
-				    agent.currentLoop = newAgent.currentLoop;
-					agent.currentDataId = newAgent.currentDataId;		    
-					agent.lastUpdate = newAgent.lastUpdate;
-					agent.info = newAgent.info;					
-					agent.save(function(err, post) {
-						return res.json({"success":"true"});
-					});		
-				}
-				else {
-					newAgent.save(function(err, post) {
-						Agent.find({}, function(err, agents){
-							return res.json({"success":"true","agents":agents});
-						});
-					});					
-				}
+		var reqAgent;
+		Agent.findOne({ 'name' :  req.body.name }, 
+		function(err, agent) {
+			if (agent){
+				reqAgent = agent;
 			}
-		);		
+			else {
+				reqAgent = new Agent();
+			}
+			reqAgent.name = req.body.name;
+			reqAgent.currentTest = req.body.currentTest;
+			reqAgent.currentLoop = req.body.currentLoop;
+			if(reqAgent.currentLoop==undefined) {
+				reqAgent.currentLoop="N/A";
+			}
+			reqAgent.currentDataId = req.body.currentDataId;
+			if(reqAgent.currentDataId==undefined) {
+				reqAgent.currentDataId="N/A";
+			}
+			reqAgent.info = req.body.info;		
+			if(reqAgent.info==undefined) {
+				reqAgent.info= "N/A"
+			}
+			reqAgent.lastUpdate = Date.now();
+			
+	
+			reqAgent.save(function(err, post) {
+				Agent.find({}, function(err, agents){
+						return res.json({"success":"true","agents":agents});
+				});
+			});	
+
+		});
 	})
+
 
 	//deletes all agents
 	.delete(function(req, res) {
