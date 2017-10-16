@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import myTheme from './my_modules/myTheme';
-
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
+import FlatButton from 'material-ui/FlatButton';
 
 import './index.css';
 import MTable from './my_modules/MTable';
@@ -37,10 +34,15 @@ class App extends Component {
         <div id="title">
           Agents
         </div>
+        <div id="mButton" >
+        <FlatButton label="Clear" />
+        </div>
+        <div id="mTable" >
         <Divider/>
         <Paper zDepth={3}>
-          <MTable  id="mTable" data={this.state.data} headers={testmodel}/>
+          <MTable data={this.state.data} headers={testmodel}/>
         </Paper>
+        </div>
       </MuiThemeProvider>  
     );
   }

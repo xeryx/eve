@@ -7,6 +7,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import Paper from 'material-ui/Paper';
 
 
 class MTable extends Component {
@@ -23,7 +24,7 @@ class MTable extends Component {
         var thisData = this.props.data
 
         thisData.forEach(function(dataObj) {
-            rows.push(<TableRow > 
+            rows.push(<TableRow> 
                 <TableRowColumn style={cellStyle}>{dataObj.name}</TableRowColumn>
                 <TableRowColumn style={cellStyle}>{dataObj.currentTest}</TableRowColumn>
                 <TableRowColumn style={cellStyle}>{dataObj.currentLoop}</TableRowColumn>
@@ -45,6 +46,7 @@ class MTable extends Component {
             </TableHeader>
             <TableBody 
                 displayRowCheckbox={false}
+                stripedRows= {false}
                 showRowHover = {true}>
                 {rows}
           </TableBody>                  
