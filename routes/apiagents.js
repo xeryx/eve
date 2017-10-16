@@ -13,7 +13,6 @@ router.route('/')
 	})
 
 	//creates or updates an agent
-	//creates or updates an agent
 	.post(function(req, res) {
 
 		var reqAgent;

@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/FlatButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
   Table,
   TableBody,
@@ -21,41 +17,46 @@ class MTable extends Component {
         var hd = [];
 
         for(var i=0; i<this.props.headers.length; i++) {
-            hd.push(<TableHeaderColumn>{this.props.headers[i]["label"]}</TableHeaderColumn>);
+            hd.push(<TableHeaderColumn style={cellStyle}>{this.props.headers[i]["label"]}</TableHeaderColumn>);
         }
 
         var thisData = this.props.data
 
         thisData.forEach(function(dataObj) {
-            rows.push(<TableRow> 
-                <TableRowColumn>{dataObj.name}</TableRowColumn>
-                <TableRowColumn>{dataObj.currentTest}</TableRowColumn>
-                <TableRowColumn>{dataObj.currentLoop}</TableRowColumn>
-                <TableRowColumn>{dataObj.currentDataId}</TableRowColumn>
-                <TableRowColumn>{dataObj.info}</TableRowColumn>
-                <TableRowColumn>{new Date(dataObj.lastUpdate).toLocaleTimeString()}</TableRowColumn>
+            rows.push(<TableRow > 
+                <TableRowColumn style={cellStyle}>{dataObj.name}</TableRowColumn>
+                <TableRowColumn style={cellStyle}>{dataObj.currentTest}</TableRowColumn>
+                <TableRowColumn style={cellStyle}>{dataObj.currentLoop}</TableRowColumn>
+                <TableRowColumn style={cellStyle}>{dataObj.currentDataId}</TableRowColumn>
+                <TableRowColumn style={cellStyle}>{dataObj.info}</TableRowColumn>
+                <TableRowColumn style={cellStyle}>{new Date(dataObj.lastUpdate).toLocaleTimeString()}</TableRowColumn>
                 </TableRow> )
                 
         }, this);
 
     return (
-        <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-            <Table id="mTable">
-            <TableHeader>
+            <Table>
+            <TableHeader 
+                displaySelectAll={false} 
+                adjustForCheckbox={false}>
             <TableRow> 
                 {hd} 
             </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody 
+                displayRowCheckbox={false}
+                showRowHover = {true}>
                 {rows}
           </TableBody>                  
         </Table>
-        </MuiThemeProvider>   
-        
-        
     )
 
     }
 }
+
+
+const cellStyle = {
+    "text-align": "center" 
+};
 
 export default MTable;

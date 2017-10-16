@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
-import './App.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import myTheme from './my_modules/myTheme';
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+
+import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
+
+import './index.css';
 import MTable from './my_modules/MTable';
 
-class App extends Component {
+const colors = require('material-ui/styles/colors');
 
+class App extends Component {
   constructor(props) {
     super(props); 
     this.state = {data: []};    
@@ -19,14 +31,22 @@ class App extends Component {
  }
 
   render() {
+
     return (
-        <MTable data={this.state.data} headers={testmodel}/>
+      <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}>  
+        <div id="title">
+          Agents
+        </div>
+        <Divider/>
+        <Paper zDepth={3}>
+          <MTable  id="mTable" data={this.state.data} headers={testmodel}/>
+        </Paper>
+      </MuiThemeProvider>  
     );
   }
 }
 
 export default App;
-
 
 const testmodel = [
   {name: "name", label: "Agent Name"}, 
@@ -37,6 +57,7 @@ const testmodel = [
   {name: "lastUpdate",label: "Last Update"}
 ];
 
+/*
 const testdata = [{
   name: 'agent01',
   currentTest: 'Test5',
@@ -67,3 +88,4 @@ const testdata = [{
   lastUpdate: 1507323999999
   }
 ];
+*/
