@@ -8,7 +8,7 @@ class MForm extends Component {
 
     return (
         <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        {/*}
+        
             <Table id="mForm">
             <TableHeader>
             <TableRow> 
@@ -19,7 +19,7 @@ class MForm extends Component {
                 {rows}
           </TableBody>                  
         </Table>
-        */}
+        
         </MuiThemeProvider>   
     
         

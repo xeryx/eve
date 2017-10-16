@@ -7,7 +7,7 @@ var agentSchema = new mongoose.Schema({
 	currentLoop: String,
 	currentDataId: String,
 	info: String,
-	lastUpdate: {type: Date}
+	lastUpdate: String
 });
 
 

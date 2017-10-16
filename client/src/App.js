@@ -5,12 +5,11 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import Appbar from 'material-ui/AppBar'
 
 import './index.css';
 import MTable from './my_modules/MTable';
-
-const colors = require('material-ui/styles/colors');
 
 class App extends Component {
   constructor(props) {
@@ -31,17 +30,16 @@ class App extends Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}>  
-        <div id="title">
-          Agents
-        </div>
-        <div id="mButton" >
-        <FlatButton label="Clear" />
-        </div>
+        <Appbar 
+            title="Agent info" 
+            id="pagetop"
+            zDepth="2">  
+        </Appbar> 
         <div id="mTable" >
         <Divider/>
-        <Paper zDepth={3}>
+        <Paper zDepth={2}> 
           <MTable data={this.state.data} headers={testmodel}/>
-        </Paper>
+         </Paper> 
         </div>
       </MuiThemeProvider>  
     );

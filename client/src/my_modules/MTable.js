@@ -6,42 +6,51 @@ import {
   TableHeaderColumn,
   TableRow,
   TableRowColumn,
+  TableSortLabel
 } from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
+
 
 
 class MTable extends Component {
 
+    constructor(props) {
+        super(props); 
+        this.state = {sortfield: "currentDataId", descendingorder:true};    
+    }
+
    render() {  
 
-        var rows = [];
-        var hd = [];
-
-        for(var i=0; i<this.props.headers.length; i++) {
-            hd.push(<TableHeaderColumn style={cellStyle}>{this.props.headers[i]["label"]}</TableHeaderColumn>);
+        var thisData = this.props.data.sort(dynamicSort(this.state.sortfield))
+        if(!this.state.descendingorder) {
+            thisData.reverse();
         }
 
-        var thisData = this.props.data
+        var rows = [];
+        var headerrows = [];
 
-        thisData.forEach(function(dataObj) {
-            rows.push(<TableRow> 
-                <TableRowColumn style={cellStyle}>{dataObj.name}</TableRowColumn>
-                <TableRowColumn style={cellStyle}>{dataObj.currentTest}</TableRowColumn>
-                <TableRowColumn style={cellStyle}>{dataObj.currentLoop}</TableRowColumn>
-                <TableRowColumn style={cellStyle}>{dataObj.currentDataId}</TableRowColumn>
-                <TableRowColumn style={cellStyle}>{dataObj.info}</TableRowColumn>
-                <TableRowColumn style={cellStyle}>{new Date(dataObj.lastUpdate).toLocaleTimeString()}</TableRowColumn>
-                </TableRow> )
-                
-        }, this);
+        for(var i=0; i<this.props.headers.length; i++) {
+            headerrows.push(<TableHeaderColumn style={cellStyle}>
+                {this.props.headers[i]["label"]}
+                </TableHeaderColumn>);
+        }
+
+       for(var i=0; i<thisData.length;i++) {
+            var rowcols = [];
+            for(var j=0; j<this.props.headers.length;j++) {
+                rowcols.push(<TableRowColumn 
+                style={cellStyle}>{thisData[i][this.props.headers[j].name]}
+                </TableRowColumn>)
+            }
+            rows.push(<TableRow>{rowcols}</TableRow>)           
+        }
 
     return (
             <Table>
             <TableHeader 
                 displaySelectAll={false} 
                 adjustForCheckbox={false}>
-            <TableRow> 
-                {hd} 
+            <TableRow onCellClick={(event) => (this.tableHeaderEventHandler(event))}> 
+                {headerrows} 
             </TableRow>
             </TableHeader>
             <TableBody 
@@ -54,8 +63,27 @@ class MTable extends Component {
     )
 
     }
+
+    tableHeaderEventHandler(event) {
+        var newSortField = this.props.headers[this.props.headers.findIndex(x => x.label==event.target.textContent)].name;
+    
+        if(this.state.sortfield != newSortField) {
+            this.setState({sortfield : newSortField});
+        } else {
+            this.setState({descendingorder : !this.state.descendingorder});
+        }
+     
+    }
 }
 
+
+function dynamicSort(property) {
+    var sortOrder = 1;
+    return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
 
 const cellStyle = {
     "text-align": "center" 

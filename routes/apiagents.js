@@ -38,7 +38,7 @@ router.route('/')
 			if(reqAgent.info==undefined) {
 				reqAgent.info= "N/A"
 			}
-			reqAgent.lastUpdate = Date.now();
+			reqAgent.lastUpdate = new Date().toLocaleString();
 			
 	
 			reqAgent.save(function(err, post) {

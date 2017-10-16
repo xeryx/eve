@@ -5,15 +5,16 @@ var _colorManipulator = require('material-ui/utils/colorManipulator');
 
 const muiTheme = {
   palette: {
-    primary1Color: _colors.cyan700,
+    primary1Color: '#0f4d2e',
     primary2Color: _colors.cyan700,
     primary3Color: _colors.grey600,
     accent1Color: _colors.greenA200,
-    accent2Color: _colors.greenA400,
+    //accent2Color: _colors.greenA400,
+    accent2Color: '#00994f',
     accent3Color: _colors.greenA100,
     textColor: _colors.fullWhite,
     secondaryTextColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.7),
-    alternateTextColor: '#303030',
+    alternateTextColor: '#abb3af',
     canvasColor: '#303030',
     borderColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.3),
     disabledColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.3),
