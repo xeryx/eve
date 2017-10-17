@@ -6,19 +6,18 @@ import {
   TableHeaderColumn,
   TableRow,
   TableRowColumn,
-  TableSortLabel
+//  TableSortLabel
 } from 'material-ui/Table';
 
 
-
-class MTable extends Component {
+class MyTable extends Component {
 
     constructor(props) {
         super(props); 
         this.state = {sortfield: "currentDataId", descendingorder:true};    
     }
 
-   render() {  
+    render() {  
 
         var thisData = this.props.data.sort(dynamicSort(this.state.sortfield))
         if(!this.state.descendingorder) {
@@ -34,17 +33,17 @@ class MTable extends Component {
                 </TableHeaderColumn>);
         }
 
-       for(var i=0; i<thisData.length;i++) {
+       for(var k=0; k<thisData.length;k++) {
             var rowcols = [];
             for(var j=0; j<this.props.headers.length;j++) {
                 rowcols.push(<TableRowColumn 
-                style={cellStyle}>{thisData[i][this.props.headers[j].name]}
+                style={cellStyle}>{thisData[k][this.props.headers[j].name]}
                 </TableRowColumn>)
             }
             rows.push(<TableRow>{rowcols}</TableRow>)           
         }
 
-    return (
+        return (
             <Table>
             <TableHeader 
                 displaySelectAll={false} 
@@ -58,26 +57,23 @@ class MTable extends Component {
                 stripedRows= {false}
                 showRowHover = {true}>
                 {rows}
-          </TableBody>                  
-        </Table>
-    )
-
+            </TableBody>                  
+            </Table>
+        )
     }
 
-    tableHeaderEventHandler(event) {
-        var newSortField = this.props.headers[this.props.headers.findIndex(x => x.label==event.target.textContent)].name;
+    tableHeaderEventHandler = (event) => {
+        var newSortField = this.props.headers[this.props.headers.findIndex(x => x.label===event.target.textContent)].name;
     
-        if(this.state.sortfield != newSortField) {
+        if(this.state.sortfield !== newSortField) {
             this.setState({sortfield : newSortField});
         } else {
             this.setState({descendingorder : !this.state.descendingorder});
         }
-     
     }
 }
 
-
-function dynamicSort(property) {
+var dynamicSort = function(property) {
     var sortOrder = 1;
     return function (a,b) {
         var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
@@ -85,8 +81,9 @@ function dynamicSort(property) {
     }
 }
 
+
 const cellStyle = {
     "text-align": "center" 
 };
 
-export default MTable;
+export default MyTable;
