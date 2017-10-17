@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Appbar from 'material-ui/AppBar'
 import NavigationExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import IconButton from 'material-ui/IconButton';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-
+import Divider from 'material-ui/Divider';
 
 class MyAppbar extends Component {
 
@@ -21,7 +22,12 @@ class MyAppbar extends Component {
         return(
         <div>            
         <Appbar 
-            title="Agent info" 
+            title={<div>
+                <div style={{"float":"left"}}>Agent info</div>
+                <IconButton style={refreshIconStyle} onClick={this.refreshItemHandler} >
+                    <NavigationRefresh color="#abb3af"/>
+                </IconButton> 
+                </div>}
             id="pagetop"
             iconElementLeft={
                 <IconButton onClick={this.menuButtonTouchHandler} >
@@ -42,7 +48,15 @@ class MyAppbar extends Component {
             targetOrigin={{horizontal: 'left', vertical: 'top'}}
             onRequestClose={this.menuCloseHandler}>
             <Menu>
-                <MenuItem primaryText="Clear agent list" />
+                <MenuItem 
+                    primaryText="Clear agent list" 
+                    onClick={this.clearItemHandler}
+                    />
+                <Divider/>
+                <MenuItem 
+                    primaryText="To do..." 
+                    onClick={this.todoItemHandler}
+                    />
             </Menu>
         </Popover>
         </div>
@@ -63,11 +77,22 @@ class MyAppbar extends Component {
             open: false,
         });
     }
-
     formButtonTouchHandler = (event) => {
         alert("Form");
     }    
-
+    todoItemHandler = (event) => {
+        alert("Coming soon");
+    }    
+    clearItemHandler = (event) => {
+        this.props.handleDeleteRequest();
+    }   
+    refreshItemHandler = (event) => {
+        this.props.handleUpdateRequest();
+    }   
+  
 }
 
+const refreshIconStyle = {
+    "padding": "15px 0px 0px 0px"
+}
 export default MyAppbar;

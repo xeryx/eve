@@ -66,7 +66,7 @@ class MyTable extends Component {
         var newSortField = this.props.headers[this.props.headers.findIndex(x => x.label===event.target.textContent)].name;
     
         if(this.state.sortfield !== newSortField) {
-            this.setState({sortfield : newSortField});
+            this.setState({sortfield : newSortField, descendingorder:true});
         } else {
             this.setState({descendingorder : !this.state.descendingorder});
         }
