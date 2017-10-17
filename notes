@@ -1,0 +1,27 @@
+Start mongodb:
+cmd
+cd C:/Program Files/MongoDB/Server/3.4/bin
+./mongod.exe -dbpath D:/training/mean/agentapp/mongodb
+
+
+Start express app:
+Git bash
+cd D:/training/mean/agentapp
+npm start
+
+
+
+Start React app:
+Git bash
+cd D:/training/react/env/agentapp
+PORT=3001 npm start
+
+installed 'react-table'
+
+Created React app with create-react-app
+created express app 
+
+
+kill npm:
+
+powershell get-process node | Stop-Process
