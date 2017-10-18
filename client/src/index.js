@@ -10,6 +10,7 @@ import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import MyTable from './my_modules/myTable';
 import MyAppbar from './my_modules/myAppbar';
+import socketIOClient from "socket.io-client";
 
 
 import './index.css';
@@ -17,7 +18,7 @@ import './index.css';
 class App extends Component {
   constructor(props) {
     super(props); 
-    this.state = {data: []};  
+    this.state = {data: [],socketmessage:"Test"};  
     this.updateAgentsInfo = this.updateAgentsInfo.bind(this);  
     this.deleteAgentsInfo = this.deleteAgentsInfo.bind(this);  
   }
@@ -28,7 +29,9 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}>  
         <MyAppbar handleUpdateRequest={this.updateAgentsInfo}
-                  handleDeleteRequest={this.deleteAgentsInfo} /> 
+                  handleDeleteRequest={this.deleteAgentsInfo} 
+                  message={this.state.socketmessage}
+                  /> 
         <div id="mTable" >
         <Divider/>
         <Paper zDepth={2}> 
@@ -56,6 +59,11 @@ class App extends Component {
       this.updateAgentsInfo();
   }
 
+  componentdidMount = () => {
+    var socket = socketIOClient("http://127.0.0.1:3000");
+    socket.on("message", msg => this.setState({ socketmessage: msg }));
+
+  }
 
 
 

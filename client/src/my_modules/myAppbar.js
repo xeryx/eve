@@ -27,6 +27,7 @@ class MyAppbar extends Component {
                 <IconButton style={refreshIconStyle} onClick={this.refreshItemHandler} >
                     <NavigationRefresh color="#abb3af"/>
                 </IconButton> 
+                <div style={{"float":"right"}}>{this.props.message}</div>
                 </div>}
             id="pagetop"
             iconElementLeft={

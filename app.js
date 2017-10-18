@@ -19,14 +19,25 @@ var default_router = function(req, res)   {
 
 var app = express(); 
 
-// uncomment after placing your favicon in /public
+/**
+ * Socket.io code
+ */
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+app.use(function(req, res, next){
+  res.io = io;
+  next();
+});
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
 
-app.use('/', apihome);
 app.use('/agents', apiagents);
+app.use('/', apihome);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -50,7 +61,7 @@ if (app.get('env') === 'development') {
     });
 }
 
-module.exports = app;
+module.exports = {app: app, server: server};
 
 /*
 function agentCleanup() {
