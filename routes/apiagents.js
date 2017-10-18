@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var Agent = mongoose.model('Agent');
+var socketapi = require('../sockets/socketsapi');
 
 router.route('/')
 

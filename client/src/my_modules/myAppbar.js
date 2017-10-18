@@ -61,7 +61,7 @@ class MyAppbar extends Component {
         </Popover>
         </div>
         )
-    }  
+    } 
     
     menuButtonTouchHandler = (event) => {
         // This prevents ghost click.

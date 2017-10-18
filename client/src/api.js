@@ -1,3 +1,5 @@
+import openSocket from 'socket.io-client';
+
 export function getAgents() {
     return(
         fetch('/agents', {
@@ -16,3 +18,8 @@ export function deleteAgents() {
         .then(response => response.json())
     );
 };
+
+export function socketConnect() {
+    const socket = openSocket();
+
+}
