@@ -29,14 +29,14 @@ class MyTable extends Component {
 
         for(var i=0; i<this.props.headers.length; i++) {
             headerrows.push(<TableHeaderColumn key={i} style={cellStyle}>
-                {this.props.headers[i]["label"]}
+                {this.props.headers[i].label}
                 </TableHeaderColumn>);
         }
 
        for(var k=0; k<thisData.length;k++) {
             var rowcols = [];
             for(var j=0; j<this.props.headers.length;j++) {
-                rowcols.push(<TableRowColumn key={j}
+                rowcols.push(<TableRowColumn key={j} 
                 style={cellStyle}>{thisData[k][this.props.headers[j].name]}
                 </TableRowColumn>)
             }

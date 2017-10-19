@@ -12,9 +12,8 @@ router.route('/')
 		});
 	})
 
-	//creates or updates an agent
+	//creates or updates an agnt
 	.post(function(req, res) {
-
 		var reqAgent;
 		Agent.findOne({ 'name' :  req.body.name }, 
 		function(err, agent) {
@@ -43,8 +42,8 @@ router.route('/')
 	
 			reqAgent.save(function(err, post) {
 				Agent.find({}, function(err, agents){
-						res.io.emit("senddata", agents);				
-						return res.json({"success":"true","agents":agents});
+					setTimeout(function() {res.io.emit("senddata", agents)},0);	
+					return res.json({"success":"true","agents":agents});
 				});
 			});	
 
@@ -60,6 +59,7 @@ router.route('/')
 				return res.json({message: err.message});
 			}
 			Agent.find({}, function(err, agents){
+				setTimeout(function() {res.io.emit("senddata", agents)},0);	
 				return res.json({"success":"true","agents":agents});
 			});
 		});
@@ -86,10 +86,11 @@ router.route('/agents/:agentname')
 		Agent.remove({"name":req.params.agentname}, function(err) {
 			if (err){
 				res.status(500);
-				res.json({message: err.message});
+				return res.json({message: err.message});
 			}
 			Agent.find({}, function(err, agents){
-				res.json({"success":"true","agents":agents});
+				setTimeout(function() {res.io.emit("senddata", agents)},0);	
+				return res.json({"success":"true","agents":agents});
 			});
 		});
 	});

@@ -3,10 +3,12 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var Promise = require("bluebird");
 var mongoose = require('mongoose');
 var http = require('http');
 require('./models/models');
 
+mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/agentstest", { useMongoClient: true });
 
 
@@ -19,9 +21,7 @@ var default_router = function(req, res)   {
 
 var app = express(); 
 
-/**
- * Socket.io code
- */
+//Socket.io code
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 io.set('transports', ['websocket','polling']);
@@ -31,11 +31,13 @@ app.use(function(req, res, next){
   next();
 });
 
+//Middleware
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
 
+//Mount routers
 app.use('/agents', apiagents);
 app.use('/', apihome);
 
