@@ -40,7 +40,7 @@ class MyAppbar extends Component {
                     <NavigationExpandMore/>
                 </IconButton>
             }
-            zDepth="2">
+            zDepth={2}>
         </Appbar>
         <Popover
             open={this.state.open}

@@ -28,7 +28,7 @@ class MyTable extends Component {
         var headerrows = [];
 
         for(var i=0; i<this.props.headers.length; i++) {
-            headerrows.push(<TableHeaderColumn style={cellStyle}>
+            headerrows.push(<TableHeaderColumn key={i} style={cellStyle}>
                 {this.props.headers[i]["label"]}
                 </TableHeaderColumn>);
         }
@@ -36,11 +36,11 @@ class MyTable extends Component {
        for(var k=0; k<thisData.length;k++) {
             var rowcols = [];
             for(var j=0; j<this.props.headers.length;j++) {
-                rowcols.push(<TableRowColumn 
+                rowcols.push(<TableRowColumn key={j}
                 style={cellStyle}>{thisData[k][this.props.headers[j].name]}
                 </TableRowColumn>)
             }
-            rows.push(<TableRow>{rowcols}</TableRow>)           
+            rows.push(<TableRow key={k}>{rowcols}</TableRow>)           
         }
 
         return (
@@ -83,7 +83,7 @@ var dynamicSort = function(property) {
 
 
 const cellStyle = {
-    "text-align": "center" 
+    "textAlign": "center" 
 };
 
 export default MyTable;

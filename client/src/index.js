@@ -28,7 +28,7 @@ class App extends Component {
 
    render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}>  
+      <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}><div>  
         <MyAppbar handleUpdateRequest={this.updateAgentsInfo}
                   handleDeleteRequest={this.deleteAgentsInfo} 
                   message={this.state.socketmessage}
@@ -40,14 +40,14 @@ class App extends Component {
                   headers={testmodel}/>
          </Paper> 
          </div>
-      </MuiThemeProvider>  
+      </div></MuiThemeProvider>  
     );
   }
 
   componentWillMount = function() {
     this.updateAgentsInfo();
     
-    var socket = openSocket('http://192.168.0.9:3000');
+    const socket = openSocket({transports: ['websocket','polling']});
     socket.on('senddata', this.updateAgentsInfoAfterPush);
     socket.on('sendmessage', this.updateMessageAfterPush);
   }

@@ -24,6 +24,7 @@ var app = express();
  */
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+io.set('transports', ['websocket','polling']);
 
 app.use(function(req, res, next){
   res.io = io;
