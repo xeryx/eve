@@ -2,7 +2,6 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var Agent = mongoose.model('Agent');
-var socketapi = require('../sockets/socketsapi');
 
 router.route('/')
 
@@ -44,6 +43,7 @@ router.route('/')
 	
 			reqAgent.save(function(err, post) {
 				Agent.find({}, function(err, agents){
+						res.io.emit("senddata", agents);				
 						return res.json({"success":"true","agents":agents});
 				});
 			});	

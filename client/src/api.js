@@ -1,5 +1,3 @@
-import openSocket from 'socket.io-client';
-
 export function getAgents() {
     return(
         fetch('/agents', {
@@ -19,7 +17,3 @@ export function deleteAgents() {
     );
 };
 
-export function socketConnect() {
-    const socket = openSocket();
-
-}

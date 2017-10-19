@@ -10,7 +10,7 @@ import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import MyTable from './my_modules/myTable';
 import MyAppbar from './my_modules/myAppbar';
-import socketIOClient from "socket.io-client";
+import openSocket from 'socket.io-client';
 
 
 import './index.css';
@@ -18,12 +18,13 @@ import './index.css';
 class App extends Component {
   constructor(props) {
     super(props); 
-    this.state = {data: [],socketmessage:"Test"};  
+    this.state = {data: [],socketmessage:""};  
     this.updateAgentsInfo = this.updateAgentsInfo.bind(this);  
     this.deleteAgentsInfo = this.deleteAgentsInfo.bind(this);  
+    this.updateAgentsInfoAfterPush = this.updateAgentsInfoAfterPush.bind(this);
+    this.updateMessageAfterPush = this.updateMessageAfterPush.bind(this);
+    
   }
-
-
 
    render() {
     return (
@@ -43,6 +44,21 @@ class App extends Component {
     );
   }
 
+  componentWillMount = function() {
+    this.updateAgentsInfo();
+    
+    var socket = openSocket('http://192.168.0.9:3000');
+    socket.on('senddata', this.updateAgentsInfoAfterPush);
+    socket.on('sendmessage', this.updateMessageAfterPush);
+  }
+
+  updateStateAgentData = function(newdata) {
+    this.setState({data : newdata});
+  }
+  updateStateMessage = function(newmessage) {
+    this.setState({message : newmessage});
+  }
+
   updateAgentsInfo = function() {
     getAgents().then(responseJson => this.setState({data : responseJson.agents}))
     .catch(error => alert("Error: " + error.message + "\n" + error.stack))
@@ -52,26 +68,15 @@ class App extends Component {
     deleteAgents().then(responseJson => this.setState({data : responseJson.agents}))
     .catch(error => alert("Error: " + error.message + "\n" + error.stack))
   }
-
-
   
-  componentWillMount = () => {
-      this.updateAgentsInfo();
-  }
-
-  componentdidMount = () => {
-    var socket = socketIOClient("http://127.0.0.1:3000");
-    socket.on("message", msg => this.setState({ socketmessage: msg }));
-
-  }
-
-
-
-
+  updateAgentsInfoAfterPush = function(newdata) {  
+    this.setState({data : newdata});
+  } 
+  updateMessageAfterPush = function(newmessage) {
+    this.setState({socketmessage : newmessage});
+  } 
+ 
 }
-
-
-
 
 const testmodel = [
   {name: "name", label: "Agent Name"}, 
