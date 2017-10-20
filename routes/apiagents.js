@@ -1,7 +1,14 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
-var Agent = mongoose.model('Agent');
+var AgentModels = [];
+
+var agentModelnames = mongoose.modelNames();
+for(var i=0; i<agentModelnames.length; i++) {
+	AgentModels.push(mongoose.model(agentModelnames[i]));
+};
+
+var Agent = AgentModels[0];
 
 router.route('/')
 

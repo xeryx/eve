@@ -1,5 +1,4 @@
 //import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-//import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {deleteAgents,getAgents,submitAgent} from './api.js'
@@ -11,9 +10,9 @@ import MyTable from './my_modules/myTable';
 import MyAppbar from './my_modules/myAppbar';
 import MyForm from './my_modules/myForm';
 import openSocket from 'socket.io-client';
+import myModels from './myModelsFile.json';
 
-
-import './index.css';
+ import './index.css';
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +28,6 @@ class App extends Component {
   }
 
    render() {
-
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}><div>  
@@ -93,14 +91,7 @@ class App extends Component {
  
 }
 
-const testmodel = [
-  {name: "name", label: "Agent Name"}, 
-  {name: "currentTest",label: "Current Test"}, 
-  {name: "currentLoop",label: "Current Iteration"},
-  {name: "currentDataId",label: "Current Data Id"},
-  {name: "info",label: "Info"},
-  {name: "lastUpdate",label: "Last Update"}
-];
+const testmodel = myModels[0].model;
 
 export default App;
 

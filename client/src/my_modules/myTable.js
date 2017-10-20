@@ -37,7 +37,7 @@ class MyTable extends Component {
             var rowcols = [];
             for(var j=0; j<this.props.headers.length;j++) {
                 rowcols.push(<TableRowColumn key={j} 
-                style={cellStyle}>{thisData[k][this.props.headers[j].name]}
+                style={cellStyle}>{thisData[k][this.props.headers[j].field]}
                 </TableRowColumn>)
             }
             rows.push(<TableRow key={k}>{rowcols}</TableRow>)           
@@ -63,7 +63,7 @@ class MyTable extends Component {
     }
 
     tableHeaderEventHandler = (event) => {
-        var newSortField = this.props.headers[this.props.headers.findIndex(x => x.label===event.target.textContent)].name;
+        var newSortField = this.props.headers[this.props.headers.findIndex(x => x.label===event.target.textContent)].field;
     
         if(this.state.sortfield !== newSortField) {
             this.setState({sortfield : newSortField, descendingorder:true});

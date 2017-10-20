@@ -1,0 +1,36 @@
+[
+	{
+		"Schema":"ScrollingAgent",
+		"model":
+		[
+			{"field":"name", "type":"String", "label":"Agent Name"},
+			{"field":"currentTest", "type":"String", "label":"Current Test"},
+			{"field":"currentDataId", "type":"String", "label":"Current Data Id"},
+			{"field":"currentIteration", "type":"String", "label":"Current Iteration"},
+			{"field":"info", "type":"String", "label":"Info"},
+			{"field":"lastUpdate", "type":"String", "label":"Last Update"}
+		]
+	},
+	{
+		"Schema":"InitialDisplayAgent",
+		"model":[
+			{"field":"name", "type":"String", "label":"Agent Name"},
+			{"field":"currentTest", "type":"String", "label":"Current Test"},
+			{"field":"currentDataId", "type":"String", "label":"Current Data Id"},
+			{"field":"currentIteration", "type":"String", "label":"Current Iteration"},
+			{"field":"info", "type":"String", "label":"Info"},
+			{"field":"lastUpdate", "type":"String", "label":"Last Update"}
+		]
+	},	
+	{
+		"Schema":"FolderRefreshAgent",
+		"model":[
+			{"field":"name", "type":"String", "label":"Agent Name"},
+			{"field":"currentTest", "type":"String", "label":"Current Test"},
+			{"field":"currentDataId", "type":"String", "label":"Current Data Id"},
+			{"field":"currentFolder", "type":"String", "label":"Folder"},
+			{"field":"info", "type":"String", "label":"Info"},
+			{"field":"lastUpdate", "type":"String", "label":"Last Update"}
+		]
+	}
+]
