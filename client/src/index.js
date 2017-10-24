@@ -35,28 +35,31 @@ class App extends Component {
    render() {
 
     if(this.state.models.length < 1) {
-      return(<div></div>);
+      return(<div>LOADING...</div>);
     }
 
     return (<div>
-      
       <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}><div>  
+
         <MyAppbar handleUpdateReq={this.updateAgentsInfo}
                   handleDeleteReq={this.deleteAgentsInfo} 
                   handleMakeFormVisibleReq={this.updateFormVisible} 
                   message={this.state.socketmessage}/>
+        
         <div style={{"display":this.state.formVisible}}>
-          <MyForm headers={this.state.models[0].model}
+          <MyForm dataModel={this.state.models[0].model}
                   handleSubmitReq={this.submitAgentInfo}/>
         </div>
+        
         <div style={{"padding":"10px 0px 0px 0px"}}>
-        <Paper zDepth={2}> 
+          <Paper zDepth={2}> 
           <MyTable  data={this.state.data} 
-                    headers={this.state.models[0].model}/>
-         </Paper> 
-         </div>
+                    dataModel={this.state.models[0].model}/>
+          </Paper>
+        </div>
+
       </div></MuiThemeProvider>  
-  </div>);
+    </div>);
   }
 
   componentWillMount = function() {

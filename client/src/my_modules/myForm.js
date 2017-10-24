@@ -10,8 +10,8 @@ class MyForm extends Component {
         super(props); 
 
         var initialState = {};
-        for(var i=0; i<this.props.headers.length; i++) {
-            initialState[[this.props.headers[i].field]] = "Test_value";
+        for(var i=0; i<this.props.dataModel.length; i++) {
+            initialState[[this.props.dataModel[i].field]] = "Test_value";
         }
         this.state = {textValues:initialState};
 
@@ -20,12 +20,12 @@ class MyForm extends Component {
    render() {  
         var formFields = [];
        
-        for(var i=0; i<this.props.headers.length; i++) {
+        for(var i=0; i<this.props.dataModel.length; i++) {
             formFields.push(<div key={i} 
                 style={{"margin": "20px"}}>
-                    <TextField id={this.props.headers[i].field} floatingLabelText={this.props.headers[i].label}
+                    <TextField id={this.props.dataModel[i].field} floatingLabelText={this.props.dataModel[i].label}
                                 onChange={this.handleTextChange}
-                                value={this.state.textValues[this.props.headers[i].field]}/>
+                                value={this.state.textValues[this.props.dataModel[i].field]}/>
                     </div>);
         }
 

@@ -18,9 +18,4 @@ for(var i=0;i<myModels.length;i++) {
 	}
 
 	mongoose.model(schemaInputObj.modelName, new mongoose.Schema(schemaInputObj.modelContent));
-		
-
-
-	console.log("hello");
-
 };

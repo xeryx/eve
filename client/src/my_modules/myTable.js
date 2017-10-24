@@ -14,7 +14,7 @@ class MyTable extends Component {
 
     constructor(props) {
         super(props); 
-        this.state = {sortfield: "currentDataId", descendingorder:true};    
+        this.state = {sortfield: "name", descendingorder:true};    
     }
 
     render() {  
@@ -27,17 +27,17 @@ class MyTable extends Component {
         var rows = [];
         var headerrows = [];
 
-        for(var i=0; i<this.props.headers.length; i++) {
+        for(var i=0; i<this.props.dataModel.length; i++) {
             headerrows.push(<TableHeaderColumn key={i} style={cellStyle}>
-                {this.props.headers[i].label}
+                {this.props.dataModel[i].label}
                 </TableHeaderColumn>);
         }
 
        for(var k=0; k<thisData.length;k++) {
             var rowcols = [];
-            for(var j=0; j<this.props.headers.length;j++) {
+            for(var j=0; j<this.props.dataModel.length;j++) {
                 rowcols.push(<TableRowColumn key={j} 
-                style={cellStyle}>{thisData[k][this.props.headers[j].field]}
+                style={cellStyle}>{thisData[k][this.props.dataModel[j].field]}
                 </TableRowColumn>)
             }
             rows.push(<TableRow key={k}>{rowcols}</TableRow>)           
@@ -63,7 +63,7 @@ class MyTable extends Component {
     }
 
     tableHeaderEventHandler = (event) => {
-        var newSortField = this.props.headers[this.props.headers.findIndex(x => x.label===event.target.textContent)].field;
+        var newSortField = this.props.dataModel[this.props.dataModel.findIndex(x => x.label===event.target.textContent)].field;
     
         if(this.state.sortfield !== newSortField) {
             this.setState({sortfield : newSortField, descendingorder:true});
