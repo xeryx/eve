@@ -1,3 +1,12 @@
+export function getModel() {
+    return(
+        fetch('/datamodel', {
+            method: "get",
+        })
+        .then(response => response.json())
+    );
+};
+
 export function getAgents() {
     return(
         fetch('/agents', {
@@ -6,7 +15,6 @@ export function getAgents() {
         .then(response => response.json())
     );
 };
-
 
 export function deleteAgents() {
     return(
@@ -30,3 +38,4 @@ export function submitAgent(agentInfo) {
         .then(response => response.json())
     );
 };
+

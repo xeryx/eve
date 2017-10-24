@@ -1,7 +1,7 @@
 //import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {deleteAgents,getAgents,submitAgent} from './api.js'
+import {getModel,deleteAgents,getAgents,submitAgent} from './api.js'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import myTheme from './my_modules/myTheme';
@@ -10,51 +10,73 @@ import MyTable from './my_modules/myTable';
 import MyAppbar from './my_modules/myAppbar';
 import MyForm from './my_modules/myForm';
 import openSocket from 'socket.io-client';
-import myModels from './myModelsFile.json';
 
- import './index.css';
+import './index.css';
 
 class App extends Component {
   constructor(props) {
     super(props); 
-    this.state = {data: [],socketmessage:"", formVisible:"none"};  
+
+    this.state = {models:[], data: [],socketmessage:"", formVisible:"none"}; 
+     
+    this.retrieveDataModels = this.retrieveDataModels.bind(this);  
     this.updateAgentsInfo = this.updateAgentsInfo.bind(this);  
     this.deleteAgentsInfo = this.deleteAgentsInfo.bind(this);  
     this.submitAgentInfo = this.submitAgentInfo.bind(this);  
     this.updateAgentsInfoAfterPush = this.updateAgentsInfoAfterPush.bind(this);
     this.updateMessageAfterPush = this.updateMessageAfterPush.bind(this);
     this.updateFormVisible = this.updateFormVisible.bind(this);
-    
+
+    this.retrieveDataModels();
+    this.updateAgentsInfo();
+
   }
 
    render() {
 
-    return (
+    if(this.state.models.length < 1) {
+      return(<div></div>);
+    }
+
+    return (<div>
+      
       <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}><div>  
         <MyAppbar handleUpdateReq={this.updateAgentsInfo}
                   handleDeleteReq={this.deleteAgentsInfo} 
                   handleMakeFormVisibleReq={this.updateFormVisible} 
                   message={this.state.socketmessage}/>
         <div style={{"display":this.state.formVisible}}>
-          <MyForm headers={testmodel}
+          <MyForm headers={this.state.models[0].model}
                   handleSubmitReq={this.submitAgentInfo}/>
         </div>
         <div style={{"padding":"10px 0px 0px 0px"}}>
         <Paper zDepth={2}> 
-          <MyTable data={this.state.data} 
-                  headers={testmodel}/>
+          <MyTable  data={this.state.data} 
+                    headers={this.state.models[0].model}/>
          </Paper> 
          </div>
       </div></MuiThemeProvider>  
-    );
+  </div>);
   }
 
   componentWillMount = function() {
-    this.updateAgentsInfo();
-    
+
+
+   
     const socket = openSocket({transports: ['websocket','polling']});
     socket.on('senddata', this.updateAgentsInfoAfterPush);
     socket.on('sendmessage', this.updateMessageAfterPush);
+
+  }
+
+  retrieveDataModels = function() {
+    getModel().then(responseJson => this.setState({models : responseJson}))
+    .catch(error => alert("Error: " + error.message + "\n" + error.stack))
+  }
+
+  updateAgentsInfo = function() {
+    getAgents().then(responseJson => this.setState({data : responseJson.agents}))
+    .catch(error => alert("Error: " + error.message + "\n" + error.stack))
   }
 
   updateStateAgentData = function(newdata) {
@@ -62,11 +84,6 @@ class App extends Component {
   }
   updateStateMessage = function(newmessage) {
     this.setState({message : newmessage});
-  }
-
-  updateAgentsInfo = function() {
-    getAgents().then(responseJson => this.setState({data : responseJson.agents}))
-    .catch(error => alert("Error: " + error.message + "\n" + error.stack))
   }
 
   deleteAgentsInfo = function() {
@@ -90,8 +107,6 @@ class App extends Component {
   } 
  
 }
-
-const testmodel = myModels[0].model;
 
 export default App;
 

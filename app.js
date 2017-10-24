@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var Promise = require("bluebird");
 var mongoose = require('mongoose');
 var http = require('http');
-require('./models/schemes');
+require('./models/schemeLoader');
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/agentstest", { useMongoClient: true });

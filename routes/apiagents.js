@@ -40,6 +40,10 @@ router.route('/')
 			if(reqAgent.currentDataId==undefined) {
 				reqAgent.currentDataId="N/A";
 			}
+			reqAgent.currentIteration = req.body.currentIteration;
+			if(reqAgent.currentIteration==undefined) {
+				reqAgent.currentIteration="N/A";
+			}			
 			reqAgent.info = req.body.info;		
 			if(reqAgent.info==undefined) {
 				reqAgent.info= "N/A"
