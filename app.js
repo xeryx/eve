@@ -6,13 +6,13 @@ var bodyParser = require('body-parser');
 var Promise = require("bluebird");
 var mongoose = require('mongoose');
 var http = require('http');
-require('./models/schemeLoader');
+require('./models/schemaLoader');
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/agentstest", { useMongoClient: true });
 
 
-var apiagents = require('./routes/apiagents');
+var apibymodel = require('./routes/apibymodel');
 var apihome = require('./routes/apihome');
 //var api = require('./routes/api');
 var default_router = function(req, res)   {
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
 
 //Mount routers
-app.use('/agents', apiagents);
+app.use('/data/', apibymodel);
 app.use('/', apihome);
 
 

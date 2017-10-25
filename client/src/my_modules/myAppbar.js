@@ -23,11 +23,10 @@ class MyAppbar extends Component {
         <div>            
         <Appbar 
             title={<div>
-                <div style={{"float":"left"}}>Agent info</div>
+                <div style={{"float":"left"}}>{this.props.schemaName}</div>
                 <IconButton style={{"padding": "15px 0px 0px 0px"}} onClick={this.refreshItemHandler} >
                     <NavigationRefresh color="#abb3af"/>
                 </IconButton> 
-                <div style={{"float":"right"}}>{this.props.message}</div>
                 </div>}
             id="pagetop"
             iconElementLeft={
@@ -79,18 +78,18 @@ class MyAppbar extends Component {
         });
     }
     formButtonTouchHandler = (event) => {
-        this.props.handleMakeFormVisibleReq();
+        this.props.updateFormVisible();
     }    
     todoItemHandler = (event) => {
         alert("Coming soon");
         this.menuCloseHandler(event);
     }    
     clearItemHandler = (event) => {
-        this.props.handleDeleteReq();
+        this.props.requestDataDelete(this.props.schemaName);
         this.menuCloseHandler(event);
     }   
     refreshItemHandler = (event) => {
-        this.props.handleUpdateReq();
+        this.props.requestDataInfo(this.props.schemaName);
     }   
   
 }

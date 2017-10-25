@@ -1,9 +1,9 @@
 [
 	{
-		"Schema":"ScrollingAgent",
+		"schema":"Scrolling",
 		"model":
 		[
-			{"field":"name", "type":"String", "label":"Agent Name"},
+			{"field":"name", "type":"String", "label":"Name"},
 			{"field":"currentTest", "type":"String", "label":"Current Test"},
 			{"field":"currentDataId", "type":"String", "label":"Current Data Id"},
 			{"field":"currentIteration", "type":"String", "label":"Current Iteration"},
@@ -12,9 +12,9 @@
 		]
 	},
 	{
-		"Schema":"InitialDisplayAgent",
+		"schema":"Initial Display",
 		"model":[
-			{"field":"name", "type":"String", "label":"Agent Name"},
+			{"field":"name", "type":"String", "label":"Name"},
 			{"field":"currentTest", "type":"String", "label":"Current Test"},
 			{"field":"currentDataId", "type":"String", "label":"Current Data Id"},
 			{"field":"currentIteration", "type":"String", "label":"Current Iteration"},
@@ -23,9 +23,9 @@
 		]
 	},	
 	{
-		"Schema":"FolderRefreshAgent",
+		"schema":"Worklist",
 		"model":[
-			{"field":"name", "type":"String", "label":"Agent Name"},
+			{"field":"name", "type":"String", "label":"Name"},
 			{"field":"currentTest", "type":"String", "label":"Current Test"},
 			{"field":"currentDataId", "type":"String", "label":"Current Data Id"},
 			{"field":"currentFolder", "type":"String", "label":"Folder"},
@@ -33,4 +33,5 @@
 			{"field":"lastUpdate", "type":"String", "label":"Last Update"}
 		]
 	}
+
 ]

@@ -50,7 +50,7 @@ class MyForm extends Component {
     }
 
     submitHandler = (event) => { 
-        this.props.handleSubmitReq(this.state.textValues);     
+        this.props.submitData(this.state.textValues);     
     }  
 
 

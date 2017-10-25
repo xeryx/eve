@@ -1,20 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var myModels = require('../models/myModelsFile.json');
+var myModels = require('../models/mySchemasFile.json');
 
 
-router.route('/msg/:socketmessage')
-
-	.get(function(req, res) {
-		res.io.emit("sendmessage", req.params.socketmessage);
-		return res.json({"message":req.params.socketmessage});
-	});
-
-router.route('/datamodel/')
+router.route('/dataschema/')
 	
 		.get(function(req, res) {
 			return res.json(myModels);
-		});
+});
+
+router.route('/dataschema/:schemaName')
+
+	.get(function(req, res) {
+		return res.json(myModels.find(x => x.schema === req.params.schemaName));
+});
+
+
 
 router.route('/')
 

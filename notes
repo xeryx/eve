@@ -25,3 +25,5 @@ created express app
 kill npm:
 
 powershell get-process node | Stop-Process
+
+Socket.io stuff
