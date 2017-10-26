@@ -35,10 +35,14 @@ class App extends Component {
 
    render() {    
     if(this.state.schemas.length < 1) {
-      return(<div style={{"color":"white"}}>Loading {this.props.modelname} app...</div>);
+      return(<div style={{"color":"white"}}>Loading {this.props.schemaName} app...</div>);
     }
 
-    return (<div>
+    return (<div 
+            style={{"padding":"10px 0px 10px 0px",
+                    "display":((this.state.data.length > 0) ? "block" : "none")
+                  }
+            }>
       <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}><div>  
 
         <MyAppbar requestDataInfo={this.requestDataInfo}
@@ -89,7 +93,7 @@ class App extends Component {
 
   requestDataDelete = function() {
     deleteAllDataElements(this.props.schemaName).then(responseJson => this.setState({data : responseJson.data}))
-    .catch(error => alert("Error: " + error.message + "\n" + error.stack))
+    .catch(error => alert("Error: " + error.message + "\n" + error.stack));
   }
   
   submitData = function(dataElement) {
@@ -99,11 +103,12 @@ class App extends Component {
 
   updateDataInfoAfterPush = function(newdata) {  
     this.setState({data : newdata});
+
   } 
   updateFormVisible = function() {  
     this.setState({formVisible : (this.state.formVisible==="none" ? "inline" : "none") });
+
   } 
- 
 }
 
 export default App;
