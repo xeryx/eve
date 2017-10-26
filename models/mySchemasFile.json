@@ -3,34 +3,35 @@
 		"schema":"Scrolling",
 		"model":
 		[
-			{"field":"name", "type":"String", "label":"Name"},
-			{"field":"currentTest", "type":"String", "label":"Current Test"},
-			{"field":"currentDataId", "type":"String", "label":"Current Data Id"},
-			{"field":"currentIteration", "type":"String", "label":"Current Iteration"},
-			{"field":"info", "type":"String", "label":"Info"},
-			{"field":"lastUpdate", "type":"String", "label":"Last Update"}
+			{"field":"name", "label":"Name", "type":"String"},
+			{"field":"currentTest", "label":"Current Test", "type":"String"},
+			{"field":"currentDataId", "label":"Current Data Id", "type":"String"},
+			{"field":"currentIteration", "label":"Current Iteration", "type":"String"},
+			{"field":"info", "label":"Info", "type":"String"},
+			{"field":"lastUpdate", "label":"Last Update", "type":"String"}
 		]
 	},
 	{
 		"schema":"Initial Display",
 		"model":[
-			{"field":"name", "type":"String", "label":"Name"},
-			{"field":"currentTest", "type":"String", "label":"Current Test"},
-			{"field":"currentDataId", "type":"String", "label":"Current Data Id"},
-			{"field":"currentIteration", "type":"String", "label":"Current Iteration"},
-			{"field":"info", "type":"String", "label":"Info"},
-			{"field":"lastUpdate", "type":"String", "label":"Last Update"}
+			{"field":"name", "label":"Name", "type":"String"},
+			{"field":"currentTest", "label":"Current Test", "type":"String"},
+			{"field":"currentDataId", "label":"Current Data Id", "type":"String"},
+			{"field":"currentIteration", "label":"Current Iteration", "type":"String"},
+			{"field":"info", "label":"Info", "type":"String"},
+			{"field":"lastUpdate", "label":"Last Update", "type":"String"}
+			
 		]
 	},	
 	{
 		"schema":"Worklist",
 		"model":[
-			{"field":"name", "type":"String", "label":"Name"},
-			{"field":"currentTest", "type":"String", "label":"Current Test"},
-			{"field":"currentDataId", "type":"String", "label":"Current Data Id"},
-			{"field":"currentFolder", "type":"String", "label":"Folder"},
-			{"field":"info", "type":"String", "label":"Info"},
-			{"field":"lastUpdate", "type":"String", "label":"Last Update"}
+			{"field":"name", "label":"Name", "type":"String"},
+			{"field":"currentTest", "label":"Current Test", "type":"String"},
+			{"field":"currentDataId", "label":"Current Data Id", "type":"String"},
+			{"field":"currentFolder", "label":"Folder", "type":"String"},
+			{"field":"info", "label":"Info", "type":"String"},
+			{"field":"lastUpdate", "label":"Last Update", "type":"String"}
 		]
 	}
 

@@ -1,6 +1,5 @@
 //import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {getDataSchemas,getDataSchemaByName,deleteAllDataElements,getAllDataElements,submitDataElement} from './serverapi.js'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';

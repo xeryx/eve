@@ -56,6 +56,7 @@ export function submitDataElement(data,schemaName) {
             body: JSON.stringify(data)
         })
         .then(response => response.json())
+        
     );
 };
 

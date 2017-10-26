@@ -9,10 +9,10 @@ var http = require('http');
 require('./models/schemaLoader');
 
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/agentstest", { useMongoClient: true });
+mongoose.connect("mongodb://localhost:27017/testdb", { useMongoClient: true });
 
 
-var apibymodel = require('./routes/apibymodel');
+var dataApi = require('./routes/api');
 var apihome = require('./routes/apihome');
 //var api = require('./routes/api');
 var default_router = function(req, res)   {
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
 
 //Mount routers
-app.use('/data/', apibymodel);
+app.use('/data/', dataApi);
 app.use('/', apihome);
 
 
@@ -58,11 +58,17 @@ if (app.get('env') === 'development') {
         res.status(err.status || 500);
         res.json({
             status: err.status, 
-            message: err.message
-            ,stack: err.stack
+            message: err.message,
+            stack: err.stack
         });
     });
 }
+
+app.use(function(err, req, res, next) {
+      res.status(404);
+      return res.json({"success":"false"});
+});
+
 
 module.exports = {app: app, server: server};
 

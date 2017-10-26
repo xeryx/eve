@@ -17,11 +17,4 @@ router.route('/dataschema/:schemaName')
 
 
 
-router.route('/')
-
-	.get(function(req, res) {
-		return res.json({"success":"false"});
-	});
-
-
 module.exports = router;
