@@ -1,13 +1,13 @@
 //import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import React, { Component } from 'react';
-import {getDataSchemas,getDataSchemaByName,deleteAllDataElements,getAllDataElements,submitDataElement} from './serverapi.js'
+import {getDataSchemaByName,deleteAllDataElements,getAllDataElements,submitDataElement} from '../serverapi.js'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import myTheme from './misc/myTheme';
+import myTheme from '../themes/myTheme';
 import Paper from 'material-ui/Paper';
-import MyTable from './my_modules/myTable';
-import MyAppbar from './my_modules/myAppbar';
-import MyForm from './my_modules/myForm';
+import MyTable from '../my_modules/myTable';
+import MyAppbar from '../my_modules/myAppbar';
+import MyForm from '../my_modules/myForm';
 import openSocket from 'socket.io-client';
 
 import './app.css';
@@ -16,9 +16,8 @@ class App extends Component {
   constructor(props) {
     super(props); 
 
-    this.state = {schemas:[], data: [], formVisible:"none"}; 
+    this.state = {schema:"", data: [], formVisible:"none"}; 
      
-    this.retrieveDataSchemas = this.retrieveDataSchemas.bind(this);  
     this.retrieveDataSchemaByName = this.retrieveDataSchemaByName.bind(this);  
     this.requestDataInfo = this.requestDataInfo.bind(this);  
     this.requestDataDelete = this.requestDataDelete.bind(this);  
@@ -34,11 +33,11 @@ class App extends Component {
   }
 
    render() {    
-    if(this.state.schemas.length < 1) {
+    if(this.state.schema.length < 1) {
       return(<div style={{"color":"white"}}>Loading {this.props.schemaName} app...</div>);
     }
 
-    return (<div 
+return (<div 
             style={{"padding":"10px 0px 10px 0px",
                     "display":((this.state.data.length > 0) ? "block" : "none")
                   }
@@ -51,14 +50,14 @@ class App extends Component {
                   schemaName={this.props.schemaName}/>
         
         <div style={{"display":this.state.formVisible}}>
-          <MyForm dataModel={this.state.schemas[0].model}
+          <MyForm dataModel={this.state.schema.model}
                   submitData={this.submitData}/>
         </div>
         
         <div style={{"padding":"10px 0px 0px 0px"}}>
           <Paper zDepth={2}> 
           <MyTable  data={this.state.data} 
-                    dataModel={this.state.schemas[0].model}/>
+                    dataModel={this.state.schema.model}/>
           </Paper>
         </div>
 
@@ -72,17 +71,9 @@ class App extends Component {
     socket.on('data_' + this.props.schemaName, this.updateDataInfoAfterPush);
 
   }
-  retrieveDataSchemas = function() {
-    getDataSchemas().then(responseJson => this.setState({models : responseJson}))
-    .catch(error => alert("Error: " + error.message + "\n" + error.stack))
-  }
 
   retrieveDataSchemaByName = function(schemaName) {
-    var temp = this.state.schemas;
-    getDataSchemaByName(schemaName).then(responseJson =>  {
-                                      temp.push(responseJson);
-                                      this.setState({schemas : temp}); }
-    )
+    getDataSchemaByName(schemaName).then(responseJson =>  this.setState({schema : responseJson}))
     .catch(error => alert("Error: " + error.message + "\n" + error.stack))
   }
 
@@ -106,7 +97,7 @@ class App extends Component {
 
   } 
   updateFormVisible = function() {  
-    this.setState({formVisible : (this.state.formVisible==="none" ? "inline" : "none") });
+    this.setState({formVisible : (this.state.formVisible==="none" ? "block" : "none") });
 
   } 
 }

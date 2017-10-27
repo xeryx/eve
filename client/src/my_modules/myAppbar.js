@@ -23,7 +23,7 @@ class MyAppbar extends Component {
         <div>            
         <Appbar 
             title={<div>
-                <div style={{"float":"left", "font-size":"0.9em"}}>{this.props.schemaName}</div>
+                <div style={{"float":"left", "fontSize":"0.8em"}}>{this.props.schemaName}</div>
                 <IconButton style={{"padding": "18px 0px 0px 0px"}} onClick={this.refreshItemHandler} >
                     <NavigationRefresh color="#abb3af"/>
                 </IconButton> 
