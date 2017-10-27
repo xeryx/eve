@@ -69,7 +69,6 @@ app.use(function(err, req, res, next) {
       return res.json({"success":"false"});
 });
 
-
 module.exports = {app: app, server: server};
 
 /*

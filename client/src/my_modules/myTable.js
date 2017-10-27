@@ -28,23 +28,29 @@ class MyTable extends Component {
         var headerrows = [];
 
         for(var i=0; i<this.props.dataModel.length; i++) {
-            headerrows.push(<TableHeaderColumn key={i} style={cellStyle}>
+            if(this.props.dataModel[i].label.length>0) {
+                headerrows.push(<TableHeaderColumn key={i} style={cellStyle}>
                 {this.props.dataModel[i].label}
                 </TableHeaderColumn>);
+            }
         }
 
        for(var k=0; k<thisData.length;k++) {
             var rowcols = [];
             for(var j=0; j<this.props.dataModel.length;j++) {
-                rowcols.push(<TableRowColumn key={j} 
-                style={cellStyle}>{thisData[k][this.props.dataModel[j].field]}
-                </TableRowColumn>)
+                if(this.props.dataModel[j].label.length>0) {
+                    rowcols.push(<TableRowColumn key={j} 
+                    style={cellStyle}>
+                    {thisData[k][this.props.dataModel[j].field]}
+                    </TableRowColumn>)
+                }
             }
             rows.push(<TableRow key={k}>{rowcols}</TableRow>)           
         }
 
         return (
-            <Table>
+            <Table 
+                selectable={false}>
             <TableHeader 
                 displaySelectAll={false} 
                 adjustForCheckbox={false}>
@@ -56,6 +62,7 @@ class MyTable extends Component {
                 displayRowCheckbox={false}
                 stripedRows= {false}
                 showRowHover = {true}>
+
                 {rows}
             </TableBody>                  
             </Table>
@@ -83,7 +90,10 @@ var dynamicSort = function(property) {
 
 
 const cellStyle = {
-    "textAlign": "center" 
+    "textAlign": "center",
+    "paddingLeft": "3px",
+    "paddingRight": "3px",
+
 };
 
 export default MyTable;

@@ -4,12 +4,13 @@
 		"schema":"Simple WADO",
 		"model":
 		[
-			{"field":"name", "label":"Name", "type":"String"},
+			{"field":"name", "label":"Agent Name", "type":"String"},
 			{"field":"currentTest", "label":"Current Test", "type":"String"},
 			{"field":"currentStudy", "label":"Current Study UUID", "type":"String"},
 			{"field":"currentSeries", "label":"Current Series", "type":"String"},
-			{"field":"currentIteration", "label":"Current Iteration", "type":"String"},
-			{"field":"lastUpdate", "label":"Last Update", "type":"String"}
+			{"field":"wadoCount", "label":"WADO request count", "type":"String"},
+			{"field":"_id", "label":"", "type":"String"},
+			{"field":"_lastUpdate", "label":"Last Update", "type":"String"}
 		]
 	},
 	{
@@ -20,7 +21,8 @@
 			{"field":"currentDataId", "label":"Current Data Id", "type":"String"},
 			{"field":"currentIteration", "label":"Current Iteration", "type":"String"},
 			{"field":"info", "label":"Info", "type":"String"},
-			{"field":"lastUpdate", "label":"Last Update", "type":"String"}
+			{"field":"_id", "label":"", "type":"String"},
+			{"field":"_lastUpdate", "label":"Last Update", "type":"String"}
 			
 		]
 	},	
@@ -32,7 +34,8 @@
 			{"field":"currentFolder", "label":"Last Folder", "type":"String"},
 			{"field":"currentIteration", "label":"Current Iteration", "type":"String"},
 			{"field":"user", "label":"User", "type":"String"},
-			{"field":"lastUpdate", "label":"Last Update", "type":"String"}
+			{"field":"_id", "label":"", "type":"String"},
+			{"field":"_lastUpdate", "label":"Last Update", "type":"String"}
 		]
 	}
 

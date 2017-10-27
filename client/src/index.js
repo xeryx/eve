@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './apps/app';
-import App_alt from './apps/app_alt';
+//import App_alt from './apps/app_alt';
 
 ReactDOM.render(<div>
                 <div>

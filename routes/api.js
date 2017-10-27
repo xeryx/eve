@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var router = express.Router();
 
 router.route('/:schemaName')
-	// gets all date matching the schema
+	// gets all data matching the schema
 	.get(function(req, res) { 
 			var DataModel = mongoose.model(req.params.schemaName);	
 			DataModel.find({}, function(err, data){
@@ -16,7 +16,7 @@ router.route('/:schemaName')
 	.post(function(req, res) {
 		var DataModel = mongoose.model(req.params.schemaName);
 		var reqData;
-		DataModel.findOne({ 'name' :  req.body.name }, 
+		DataModel.findOne({ '_id' :  req.body._id }, 
 		function(err, dataElement) {
 			if (dataElement){
 				reqData = dataElement;
@@ -25,7 +25,7 @@ router.route('/:schemaName')
 				reqData = new DataModel();
 			}
 
-			reqData.name = req.body.name;
+			reqData._id = req.body._id;
 			DataModel.schema.eachPath(function(path) {
 				if(!path.startsWith("_")) {
 					reqData[path] = req.body[path];
@@ -35,7 +35,7 @@ router.route('/:schemaName')
 					}
 			}
 			});
-			reqData.lastUpdate = new Date().toLocaleString('en-us', {year: '2-digit', 
+			reqData._lastUpdate = new Date().toLocaleString('en-us', {year: '2-digit', 
 																	month: '2-digit', 
 																	day: '2-digit', 
 																	hour12: false, 
@@ -54,10 +54,7 @@ router.route('/:schemaName')
 			});	
 
 		});
-	}
-
-)
-
+	})
 
 	//deletes all agents
 	.delete(function(req, res) {
@@ -74,6 +71,7 @@ router.route('/:schemaName')
 		});
 	});
 
+router.route('/:schemaName/:')	
 
 
 module.exports = router;
