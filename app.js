@@ -21,6 +21,9 @@ var default_router = function(req, res)   {
 
 var app = express(); 
 
+//Serve static react build, once done
+app.use(express.static('public'))
+
 //Socket.io code
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
