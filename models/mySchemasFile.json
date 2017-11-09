@@ -37,6 +37,19 @@
 			{"field":"_id", "label":"", "type":"String"},
 			{"field":"_lastUpdate", "label":"Last Update", "type":"String"}
 		]
+	},
+	{
+		"schema":"F8-F9",
+		"model":[
+			{"field":"name", "label":"Name", "type":"String"},
+			{"field":"currentTest", "label":"Current Test", "type":"String"},
+			{"field":"currentFolder", "label":"Folder", "type":"String"},
+			{"field":"currentStudy", "label":"Current Study", "type":"String"},
+			{"field":"currentIteration", "label":"Iteration", "type":"String"},
+			{"field":"user", "label":"User", "type":"String"},
+			{"field":"_id", "label":"", "type":"String"},
+			{"field":"_lastUpdate", "label":"Last Update", "type":"String"}
+		]
 	}
 
 ]
