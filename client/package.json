@@ -21,14 +21,17 @@
 
   "proxy": {
     "/": {
-      "target": "http://localhost:3000"
+    
+      "target": "http://newcontroller.perftestmv.local:3000"
     },
     "/sockjs-node": {
-      "target": "ws://localhost:3000",
+
+      "target": "ws://locnewcontroller.perftestmv.localalhost:3000",
       "ws": true
     },
     "/socket.io": {
-      "target": "ws://localhost:3000",
+  
+      "target": "ws://newcontroller.perftestmv.local:3000",
       "ws": true
     }
    }
