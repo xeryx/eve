@@ -19,6 +19,7 @@ ReactDOM.render(<div>
                 <div>
                 <AgentInfoApp schemaName="Simple WADO"/>
                 <AgentInfoApp schemaName="Worklist"/>
+                <AgentInfoApp schemaName="F8-F9"/>
                 <AgentInfoApp schemaName="Initial Display"/>
                 </div> 
     </div>, document.getElementById('root'));

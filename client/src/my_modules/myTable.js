@@ -29,7 +29,7 @@ class MyTable extends Component {
 
         for(var i=0; i<this.props.dataModel.length; i++) {
             if(this.props.dataModel[i].label.length>0) {
-                headerrows.push(<TableHeaderColumn key={i} style={cellStyle}>
+                headerrows.push(<TableHeaderColumn key={i} style={cellStyle(i)}>
                 {this.props.dataModel[i].label}
                 </TableHeaderColumn>);
             }
@@ -40,7 +40,7 @@ class MyTable extends Component {
             for(var j=0; j<this.props.dataModel.length;j++) {
                 if(this.props.dataModel[j].label.length>0) {
                     rowcols.push(<TableRowColumn key={j} 
-                    style={cellStyle}>
+                    style={cellStyle(j)}>
                     {thisData[k][this.props.dataModel[j].field]}
                     </TableRowColumn>)
                 }
@@ -89,10 +89,19 @@ var dynamicSort = function(property) {
 }
 
 
-const cellStyle = {
-    "textAlign": "center",
-    "paddingLeft": "3px",
-    "paddingRight": "3px",
+var cellStyle = function(columnNumber) {
+
+    var width = ["10%","10%","10%","20%","5%","8%","10%","10%","10%","10%",];
+    var dir = ["rtl","rtl","rtl","rtl","rtl","rtl","rtl","ltr","ltr","ltr"];
+
+
+    return {
+        "textAlign": "center",
+        "paddingLeft": "10px",
+        "paddingRight": "10px",
+        "direction":dir[columnNumber],
+        "width":width[columnNumber], 
+    }
 
 };
 

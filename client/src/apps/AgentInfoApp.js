@@ -39,7 +39,7 @@ class AgentInfoApp extends Component {
 
 return (<div 
             style={{"padding":"10px 0px 10px 0px",
-                    "display":((this.state.data.length > 0) ? "block" : "block")
+                    "display":((this.state.data.length > 0) ? "block" : "none")
                   }
             }>
       <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}><div>  
