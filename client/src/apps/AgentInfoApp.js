@@ -1,39 +1,68 @@
 //import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import React, { Component } from 'react';
 import {getDataSchemaByName,deleteAllDataElements,getAllDataElements,submitDataElement} from '../serverapi.js'
-import MyTable_alt from '../my_modules/myTable_alt'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import myTheme from '../themes/myTheme';
+import Paper from 'material-ui/Paper';
+import MyTable from '../my_modules/myTable';
+import MyAppbar from '../my_modules/myAppbar';
+import MyForm from '../my_modules/myForm';
 import openSocket from 'socket.io-client';
 
-import './app_alt.css';
+import './AgentInfoApp.css';
 
-class App_alt extends Component {
+class AgentInfoApp extends Component {
   constructor(props) {
     super(props); 
 
-    this.state = {schema:"", data: []}; 
+    this.state = {schema:"", data: [], formVisible:"none"}; 
      
     this.retrieveDataSchemaByName = this.retrieveDataSchemaByName.bind(this);  
     this.requestDataInfo = this.requestDataInfo.bind(this);  
     this.requestDataDelete = this.requestDataDelete.bind(this);  
     this.submitData = this.submitData.bind(this);  
     this.updateDataInfoAfterPush = this.updateDataInfoAfterPush.bind(this);
-    
+    this.updateFormVisible = this.updateFormVisible.bind(this);
+
     this.retrieveDataSchemaByName(this.props.schemaName);
+    //this.retrieveDataSchemas();
     this.requestDataInfo(this.props.schemaName);
 
 
   }
 
-   render() {
-      if(this.state.schema.length < 1) {
-        return(<div style={{"color":"black"}}>Loading {this.props.schemaName} app...</div>);
-      }
+   render() {    
+    if(this.state.schema.length < 1) {
+      return(<div style={{"color":"white"}}>Loading {this.props.schemaName} app...</div>);
+    }
 
-      return (<div>  
-                <MyTable_alt  data={this.state.data} 
-                              dataModel={this.state.schema.model}
-                              schemaName={this.props.schemaName}/>
-            </div>);
+return (<div 
+            style={{"padding":"10px 0px 10px 0px",
+                    "display":((this.state.data.length > 0) ? "block" : "block")
+                  }
+            }>
+      <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}><div>  
+
+        <MyAppbar requestDataInfo={this.requestDataInfo}
+                  requestDataDelete={this.requestDataDelete} 
+                  updateFormVisible={this.updateFormVisible}
+                  schemaName={this.props.schemaName}/>
+        
+        <div style={{"display":this.state.formVisible}}>
+          <MyForm dataModel={this.state.schema.model}
+                  submitData={this.submitData}/>
+        </div>
+        
+        <div style={{"padding":"10px 0px 0px 0px"}}>
+          <Paper zDepth={2}> 
+          <MyTable  data={this.state.data} 
+                    dataModel={this.state.schema.model}/>
+          </Paper>
+        </div>
+
+      </div></MuiThemeProvider>  
+    </div>);
   }
 
   componentWillMount = function() {
@@ -67,8 +96,11 @@ class App_alt extends Component {
     this.setState({data : newdata});
 
   } 
-   
+  updateFormVisible = function() {  
+    this.setState({formVisible : (this.state.formVisible==="none" ? "block" : "none") });
+
+  } 
 }
 
-export default App_alt;
+export default AgentInfoApp;
 
