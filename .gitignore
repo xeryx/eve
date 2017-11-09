@@ -2,6 +2,8 @@ npm-debug.log
 node_modules/
 build/
 mongo/
+public/
+loadservice/
 
 client/npm-debug.log
 client/node_modules/
