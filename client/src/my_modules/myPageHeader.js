@@ -10,9 +10,9 @@ class MyPageHeader extends Component {
     render() {  
         return(
             <div style={{"padding":"10px 0px 20px 0px","font-size":"2em", "color":"#02906E"}}>
-                <img src="/res/fujifilm_logo.svg" style={{"width":"250px", "float":"left"}}/>
+                <img src="./res/fujifilm_logo.svg" style={{"width":"250px", "float":"left"}}/>
                 <div style={{"margin":"5px 0px 0px 25px", "float":"left"}}> Load test summary</div> 
-                <img src="/res/synapse5_logo.svg" style={{"width":"240px", "float":"right"}}/>                
+                <img src="./res/synapse5_logo.svg" style={{"width":"240px", "float":"right"}}/>                
                 <div style={{"clear":"both"}}></div>
             </div>
         )
