@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AgentInfoApp from './apps/AgentInfoApp';
+import MyPageHeader from './my_modules/myPageHeader';
 //import App_alt from './apps/app_alt';
 //import LoadTestUI from './apps/LoadTestUI';
 
@@ -17,6 +18,7 @@ ReactDOM.render(<div>
 
 ReactDOM.render(<div>
                 <div>
+                <div><MyPageHeader/></div>
                 <AgentInfoApp schemaName="Simple WADO"/>
                 <AgentInfoApp schemaName="Worklist"/>
                 <AgentInfoApp schemaName="F8-F9"/>

@@ -16,7 +16,7 @@ class AgentInfoApp extends Component {
   constructor(props) {
     super(props); 
 
-    this.state = {schema:"", data: [], formVisible:"none"}; 
+    this.state = {schema:"", data: [], formVisible:"none", tableVisible:"block"}; 
      
     this.retrieveDataSchemaByName = this.retrieveDataSchemaByName.bind(this);  
     this.requestDataInfo = this.requestDataInfo.bind(this);  
@@ -24,6 +24,8 @@ class AgentInfoApp extends Component {
     this.submitData = this.submitData.bind(this);  
     this.updateDataInfoAfterPush = this.updateDataInfoAfterPush.bind(this);
     this.updateFormVisible = this.updateFormVisible.bind(this);
+    this.updateTableVisible = this.updateTableVisible.bind(this);
+    
 
     this.retrieveDataSchemaByName(this.props.schemaName);
     //this.retrieveDataSchemas();
@@ -37,16 +39,13 @@ class AgentInfoApp extends Component {
       return(<div style={{"color":"white"}}>Loading {this.props.schemaName} app...</div>);
     }
 
-return (<div 
-            style={{"padding":"10px 0px 10px 0px",
-                    "display":((this.state.data.length > 0) ? "block" : "none")
-                  }
-            }>
+return (<div style={{ "padding":"10px 0px 10px 0px"}}>
       <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}><div>  
 
         <MyAppbar requestDataInfo={this.requestDataInfo}
                   requestDataDelete={this.requestDataDelete} 
                   updateFormVisible={this.updateFormVisible}
+                  updateTableVisible={this.updateTableVisible}
                   schemaName={this.props.schemaName}/>
         
         <div style={{"display":this.state.formVisible}}>
@@ -54,7 +53,7 @@ return (<div
                   submitData={this.submitData}/>
         </div>
         
-        <div style={{"padding":"10px 0px 0px 0px"}}>
+        <div style={{"padding":"10px 0px 0px 0px", "display":this.state.tableVisible}}>
           <Paper zDepth={2}> 
           <MyTable  data={this.state.data} 
                     dataModel={this.state.schema.model}/>
@@ -100,6 +99,12 @@ return (<div
     this.setState({formVisible : (this.state.formVisible==="none" ? "block" : "none") });
 
   } 
+
+  updateTableVisible = function() {  
+    this.setState({tableVisible : (this.state.tableVisible==="none" ? "block" : "none") });
+
+  } 
+
 }
 
 export default AgentInfoApp;
