@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import myTheme from '../themes/myTheme';
-
 
 class MyPageHeader extends Component {
     
@@ -15,12 +9,11 @@ class MyPageHeader extends Component {
 
     render() {  
         return(
-            <div style={{"padding":"10px 0px 20px 0px",}}>
-            <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}><div>
-                <Paper >
-                <div style={{ "font-size":"1.5em", "color":myTheme.palette.secondaryTextColor}}> Load test summary</div> 
-                </Paper> 
-                </div></MuiThemeProvider>  
+            <div style={{"padding":"10px 0px 20px 0px","font-size":"2em", "color":"#02906E"}}>
+                <img src="/res/fujifilm_logo.svg" style={{"width":"250px", "float":"left"}}/>
+                <div style={{"margin":"5px 0px 0px 25px", "float":"left"}}> Load test summary</div> 
+                <img src="/res/synapse5_logo.svg" style={{"width":"240px", "float":"right"}}/>                
+                <div style={{"clear":"both"}}></div>
             </div>
         )
     }
