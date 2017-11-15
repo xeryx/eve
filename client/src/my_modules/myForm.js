@@ -25,6 +25,7 @@ class MyForm extends Component {
                 style={{"margin": "20px"}}>
                     <TextField id={this.props.dataModel[i].field} floatingLabelText={this.props.dataModel[i].label}
                                 onChange={this.handleTextChange}
+                                onKeyDown={this.handleKeyDown}
                                 value={this.state.textValues[this.props.dataModel[i].field]}/>
                     </div>);
         }
@@ -53,7 +54,18 @@ class MyForm extends Component {
         this.props.submitData(this.state.textValues);     
     }  
 
+    handleKeyDown = (event) => { 
 
+        switch (event.key) {
+            case 'Enter':
+                this.props.submitData(this.state.textValues);
+                break;
+            default:
+                break;
+        }
+
+    }
+          
 }
 
 export default MyForm;
