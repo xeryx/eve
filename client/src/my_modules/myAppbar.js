@@ -35,7 +35,7 @@ class MyAppbar extends Component {
                 </IconButton>
             }
             iconElementRight={
-                <IconButton onClick={this.formButtonTouchHandler} >
+                <IconButton onClick={this.tableButtonTouchHandler} >
                     <NavigationExpandMore/>
                 </IconButton>
             }
@@ -54,8 +54,8 @@ class MyAppbar extends Component {
                     />
                 <Divider/>
                 <MenuItem 
-                    primaryText="To do..." 
-                    onClick={this.todoItemHandler}
+                    primaryText="Test form..." 
+                    onClick={this.formMenuHandler}
                     />
             </Menu>
         </Popover>
@@ -77,11 +77,11 @@ class MyAppbar extends Component {
             open: false,
         });
     }
-    formButtonTouchHandler = (event) => {
-        this.props.updateFormVisible();
+    tableButtonTouchHandler = (event) => {
+        this.props.updateTableVisible();
     }    
-    todoItemHandler = (event) => {
-        alert("Coming soon");
+    formMenuHandler = (event) => {
+        this.props.updateFormVisible();
         this.menuCloseHandler(event);
     }    
     clearItemHandler = (event) => {

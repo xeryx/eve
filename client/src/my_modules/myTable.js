@@ -49,7 +49,7 @@ class MyTable extends Component {
         }
 
         return (
-            <Table 
+            <Table  onCellClick={(rowNumber, columnId, event) => (this.cellEventHandler(rowNumber, columnId , event))}
                 selectable={false}>
             <TableHeader 
                 displaySelectAll={false} 
@@ -78,6 +78,10 @@ class MyTable extends Component {
             this.setState({descendingorder : !this.state.descendingorder});
         }
     }
+    cellEventHandler = (row, column,event) => {
+        //alert("Row: " + row + "\nColumn: " + column + "\nElement: " + event.target );
+    }
+    
 }
 
 var dynamicSort = function(property) {
