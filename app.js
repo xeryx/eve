@@ -14,6 +14,7 @@ mongoose.connect("mongodb://localhost:27017/testdb", { useMongoClient: true });
 
 var dataApi = require('./routes/api');
 var apihome = require('./routes/apihome');
+var apiloaddb = require('./routes/apiloaddb');
 //var api = require('./routes/api');
 var default_router = function(req, res)   {
      res.status(500).send("Error");
@@ -42,6 +43,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //Mount routers
 app.use('/data/', dataApi);
+app.use('/loaddb/', apiloaddb);
 app.use('/', apihome);
 
 
