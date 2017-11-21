@@ -60,3 +60,58 @@ export function submitDataElement(data,schemaName) {
     );
 };
 
+//Function that retrieves the contents of the response json
+export function getRequestResponseContent(requestId) {
+    return(
+        fetch('/requests/' + requestId.request + '.json', {
+            method: "get",
+        })
+        .then(response => response.json())
+    );
+};
+
+export function getAllTestRuns() {
+    return(
+        fetch('/loaddb/getAllTestRuns', {
+            method: "get",
+        })
+        .then(response => response.json())
+        .then(requestId => getRequestResponseContent(requestId))
+        .then(responseJson => responseJson.data)
+    );
+};
+
+export function getSystemUnderTestResources(runId) {
+    return(
+        fetch('/loaddb/getSystemUnderTestResources/' + runId, {
+            method: "get",
+        })
+        .then(response => response.json())
+        .then(requestId => getRequestResponseContent(requestId))
+        .then(responseJson => responseJson.data)
+    );
+};
+
+export function getPageResults(runId) {
+    return(
+        fetch('/loaddb/getPageResults/' + runId, {
+            method: "get",
+        })
+        .then(response => response.json())
+        .then(requestId => getRequestResponseContent(requestId))
+        .then(responseJson => responseJson.data)
+    );
+};
+
+/*
+export function getAllTestRuns() {
+
+    return (
+        getAllTestRunsResponseId()
+        .then(requestId => getRequestResponseContent(requestId))
+        .then(responseJson => responseJson.data)
+    );
+
+};
+
+*/
